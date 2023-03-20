@@ -139,7 +139,7 @@ function mousePressed()
     for (var i = 0; i < legendas.getRowCount(); i++)
     {
       // Check if the user clicked over one of the targets
-      if (targets[i].clicked(mouseX, mouseY)) 
+      if (targets[i].clicked(mouseX, mouseY) && mouseButton === LEFT) 
       {
         // Checks if it was the correct target
         if (targets[i].id === trials[current_trial]) hits++;
