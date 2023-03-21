@@ -63,8 +63,9 @@ function draw()
     text("Trial " + (current_trial + 1) + " of " + trials.length, 50, 20);
         
     // Draw all targets
-	for (var i = 0; i < legendas.getRowCount(); i++) targets[i].draw();
-    
+	for (var i = 0; i < legendas.getRowCount(); i++){
+    targets[i].draw();
+  }
     // Draw the target label to be selected in the current trial
     textFont("Arial", 20);
     textAlign(CENTER);
@@ -141,8 +142,12 @@ function mousePressed()
       // Check if the user clicked over one of the targets
       if (targets[i].clicked(mouseX, mouseY) && mouseButton === LEFT) 
       {
+
         // Checks if it was the correct target
-        if (targets[i].id === trials[current_trial]) hits++;
+        if (targets[i].id === trials[current_trial]) {
+        targets[i].taken=1;
+        hits++;
+        }
         else misses++;
         
         current_trial++;              // Move on to the next trial/target
@@ -208,8 +213,15 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
       let legendas_index = c + GRID_COLUMNS * r;
       let target_label = legendas.getString(legendas_index, 0);
       let target_id = legendas.getNum(legendas_index, 1);
-      let target_type = legendas.getString(legendas_index, 2);    
-      let target = new Target(target_x, target_y + 40, target_size, target_label, target_type, target_id);
+      let target_type = legendas.getString(legendas_index, 2);
+      // let last = 1;
+      // if (target_id != 79){
+      //   let next_target_type = legendas.getString(legendas_index + 1, 2);
+      //   if (next_target_type == target_type) {
+      //     last = 0;  
+      //   }
+      // }
+      let target = new Target(target_x, target_y + 40, target_size, target_label, target_type, target_id/*, last*/);
       targets.push(target);
     }  
   }
