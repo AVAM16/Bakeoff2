@@ -20,18 +20,7 @@ class Target
     return dist(this.x, this.y, mouse_x, mouse_y) < this.width / 2;
   }
   
-  // Draws the target (i.e., a circle)
-  // and its label
   draw()
-  //apples--> verde
-  //melon --> verde mais escuro
-  //pear --> amarelo esbranquiçado
-  //juice --> vermelho
-  //milk--> branco
-  //yoghurt --> vermelho mais claro
-  //pepper --> vermelho acastanhado
-  //potato --> amarelo torrado
-
   {
     // Draw target
     if (this.type == "Apple") {
@@ -80,7 +69,7 @@ class Target
       fill(color('#BAF018'));
     }
     else if (this.type == "Pineapple") {
-      fill(color('#FFEFD5'));
+      fill(color('#F2EA6F'));
     }
     else if (this.type == "Plum") {
       fill(color('#DDA0DD'));
@@ -104,22 +93,22 @@ class Target
       fill(color('#F5DEB3'));
     }
     else if (this.type == "Oat Milk") {
-      fill(color('#F7E8CB'));
+      fill(color('#8c8a65'));
     }
     else if (this.type == "Sour Cream") {
-      fill(color('#F0FFF0'));
+      fill(color('#8c8a65'));
     }
     else if (this.type == "Sour Milk") {
-      fill(color('#F7FCF7'));
+      fill(color('#8c8a65'));
     }
     else if (this.type == "Soyghurt") {
-      fill(color('#f7e8cb'));
+      fill(color('#8c8a65'));
     }
     else if (this.type == "Soy Milk") {
-      fill(color('#faf1de'));
+      fill(color('#8c8a65'));
     }
     else if (this.type == "Yoghurt") {
-      fill(color('#F0FFF0'));
+      fill(color('#999996'));
     }
     else if (this.type == "Asparagus") {
       fill(color('#228B22'));
@@ -170,7 +159,10 @@ class Target
     rect(this.x - (this.width*0.75), this.y - (this.width*0.50),  this.width*1.5,  this.width*30);
     if (this.taken == 0) {
       fill(color(155, 155, 155));
-    } 
+      if(this.last == 1){
+        fill(color(50, 50, 50));
+      }
+    }
     else fill(color('#ffd35c'));
     circle(this.x, this.y, this.width);
     // Draw label
