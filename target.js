@@ -156,7 +156,10 @@ class Target
       fill(color('#00FF7F'));
     }
 
-    rect(this.x - (this.width*0.75), this.y - (this.width*0.50),  this.width*1.5,  this.width*30);
+    
+    
+    rect(this.x - (this.width*0.75), this.y - (this.width*0.50),  this.width*1.5,  this.width*30); //create the rectangle
+
     if (this.taken == 0) {
       fill(color(155, 155, 155));
       if(this.last == 1){
@@ -168,7 +171,12 @@ class Target
     // Draw label
     textFont("Arial", 12);
     fill(color(255,255,255));
-    textAlign(CENTER);
+        textAlign(CENTER);
     text(this.label, this.x, this.y);
+    textFont("Arial", 14);
+    fill('#0435d6');
+    textAlign(CENTER, TOP);
+    text(this.type, this.x, this.y - this.width/5);
+    fill('#ffffff');
   }
 }
