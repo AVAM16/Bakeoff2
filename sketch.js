@@ -214,14 +214,14 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
       let target_label = legendas.getString(legendas_index, 0);
       let target_id = legendas.getNum(legendas_index, 1);
       let target_type = legendas.getString(legendas_index, 2);
-      // let last = 1;
-      // if (target_id != 79){
-      //   let next_target_type = legendas.getString(legendas_index + 1, 2);
-      //   if (next_target_type == target_type) {
-      //     last = 0;  
-      //   }
-      // }
-      let target = new Target(target_x, target_y + 40, target_size, target_label, target_type, target_id/*, last*/);
+      let last = 1;
+      if (target_id != 79){
+        let next_target_type = legendas.getString(legendas_index + 1, 2);
+        if (next_target_type == target_type) {
+          last = 0;  
+        }
+      }
+      let target = new Target(target_x, target_y + 40, target_size, target_label, target_type, target_id, last);
       targets.push(target);
     }  
   }
