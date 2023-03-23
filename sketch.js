@@ -200,7 +200,8 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
   // for the number of targets minus one
   h_margin = horizontal_gap / (GRID_COLUMNS -1);
   v_margin = vertical_gap / (GRID_ROWS - 1);
-  
+  let x = [];
+  let y = [];
   // Set targets in a 8 x 10 grid
   for (var r = 0; r < GRID_ROWS; r++)
   {
@@ -221,9 +222,28 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
           last = 0;  
         }
       }
-      let target = new Target(target_x, target_y + 40, target_size, target_label, target_type, target_id, last);
+      x.push(target_x);
+      y.push(target_y + 40);
+      let target = new Target(target_size, target_label, target_type, target_id, last);
       targets.push(target);
     }  
+  }
+  targets.sort((a, b) => {
+    const nameA = a.label.toUpperCase();
+    const nameB = b.label.toUpperCase();
+  
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+  
+    return 0; // if names are equal
+  });
+  for (var i = 0; i < legendas.getRowCount(); i++){
+    targets[i].x = x[i];
+    targets[i].y = y[i];
   }
 }
 

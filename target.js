@@ -2,10 +2,10 @@
 class Target
 {
   taken = 0;
-  constructor(x, y, w, l, t, id, ls)
+  constructor(w, l, t, id, ls)
   {
-    this.x      = x;
-    this.y      = y;
+    this.x      = 0;
+    this.y      = 0;
     this.width  = w;
     this.label  = l;
     this.type   = t;
@@ -205,7 +205,7 @@ class Target
       fill(color(155, 155, 155));//if the circle isn't yet clicked, the circle stays grey
       
     }
-else fill(color('#ffd35c'));//if it's clicked the circle turns yellow
+    else fill(color('#ffd35c'));//if it's clicked the circle turns yellow
     circle(this.x, this.y, this.width);
     
     // Draw label   
