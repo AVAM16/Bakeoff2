@@ -197,7 +197,7 @@ class Target
       fill(color('#00FF7F'));
     }
 
-    let firstletter = this.label.charAt(0);
+    let firstletter = this.label.slice(0,3);
     
     rect(this.x - (this.width*0.75), this.y - (this.width*0.50),  this.width*1.5,  this.width*30); //creates the rectangle
 
