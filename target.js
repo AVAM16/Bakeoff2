@@ -205,17 +205,17 @@ class Target
       fill(color(155, 155, 155));//if the circle isn't yet clicked, the circle stays grey
       
     }
-    else fill(color('#ffd35c'));//if it's clicked the circle turns yellow
+else fill(color('#ffd35c'));//if it's clicked the circle turns yellow
     circle(this.x, this.y, this.width);
     
     // Draw label   
     textFont("Arial", 12);//each food of the label
-    fill(color(255,255,255));
+    fill('#0435d6');
     textAlign(CENTER);
     text(this.label, this.x, this.y);
     
     textFont("Arial", 14);//the general category that each food belongs to
-    fill('#0435d6');
+    fill(color(255,255,255));
     textAlign(CENTER, TOP);
     text(this.type, this.x, this.y - this.width/5);
     if(this.last == 1){
