@@ -199,34 +199,38 @@ class Target
 
     let firstletter = this.label.charAt(0);
     
-    rect(this.x - (this.width*0.75), this.y - (this.width*0.50),  this.width*1.5,  this.width*30); //create the rectangle
+    rect(this.x - (this.width*0.75), this.y - (this.width*0.50),  this.width*1.5,  this.width*30); //creates the rectangle
 
     if (this.taken == 0) {
-      fill(color(155, 155, 155));
+      fill(color(155, 155, 155));//if the circle isn't yet clicked, the circle stays grey
       
     }
-    else fill(color('#ffd35c'));
+    else fill(color('#ffd35c'));//if it's clicked the circle turns yellow
     circle(this.x, this.y, this.width);
+    
     // Draw label   
-    textFont("Arial", 12);
+    textFont("Arial", 12);//each food of the label
     fill(color(255,255,255));
     textAlign(CENTER);
     text(this.label, this.x, this.y);
-    textFont("Arial", 14);
+    
+    textFont("Arial", 14);//the general category that each food belongs to
     fill('#0435d6');
     textAlign(CENTER, TOP);
     text(this.type, this.x, this.y - this.width/5);
     if(this.last == 1){
-      fill('#b50404');
+      fill('#b50404');//at the end of each category
       textAlign(CENTER, BOTTOM);
       text(megatype, this.x, this.y + this.width/3);
     }
-    textFont("Arial", 25);
+    
+    textFont("Arial", 25);//letter in the upper left corner of each square that indicates the first letter of the each food
     fill('#000000');
     textAlign(LEFT, TOP);
     textStyle(BOLD);
-    text(firstletter, this.x - this.width/2.5, this.y - this.width/2.5);
-    textFont("Arial", 12);
+    text(firstletter, this.x - this.width/2 - this.width/5, this.y - this.width/2.25);
+    
+    textFont("Arial", 12);//the randomized food that appears at the bottom center of the screen
     textAlign(CENTER,TOP);
     fill('#ffffff');
   }
