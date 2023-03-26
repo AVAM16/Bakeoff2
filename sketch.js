@@ -67,7 +67,10 @@ function draw()
     targets[i].draw();
   }
     // Draw the target label to be selected in the current trial
+    fill(color(0,0,0));
+    rect(0, height - 40, width, 40);      // draws a black rectangle behind the trial label for optimal contrast          
     textFont("Arial", 20);
+    fill(color(255,255,255)); 
     textAlign(CENTER);
     text(legendas.getString(trials[current_trial],0), width/2, height - 20);
   }
