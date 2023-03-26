@@ -68,7 +68,7 @@ function draw()
   }
     // Draw the target label to be selected in the current trial
     fill(color(0,0,0));
-    rect(0, height - 40, width, 40);      // draws a black rectangle behind the trial label for optimal contrast          
+    rect(0, height - 15, width, 15);      // draws a black rectangle behind the trial label for optimal contrast          
     textFont("Arial", 20);
     fill(color(255,255,255)); 
     textAlign(CENTER);
@@ -192,6 +192,10 @@ function continueTest()
   current_trial = 0;
   continue_button.remove();
   
+  for (var i = 0; i < legendas.getRowCount(); i++){
+    targets[i].taken = 0;
+  }
+
   // Shows the targets again
   draw_targets = true; 
 }
@@ -217,17 +221,9 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
       let legendas_index = c + GRID_COLUMNS * r;
       let target_label = legendas.getString(legendas_index, 0);
       let target_id = legendas.getNum(legendas_index, 1);
-      let target_type = legendas.getString(legendas_index, 2);
-      let last = 1;
-      if (target_id != 79){
-        let next_target_type = legendas.getString(legendas_index + 1, 2);
-        if (next_target_type == target_type) {
-          last = 0;  
-        }
-      }
       x.push(target_x);
       y.push(target_y + 40);
-      let target = new Target(target_size, target_label, target_type, target_id, last);
+      let target = new Target(target_size, target_label, target_id);
       targets.push(target);
     }  
   }
