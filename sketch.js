@@ -68,7 +68,7 @@ function draw()
   }
     // Draw the target label to be selected in the current trial
     fill(color(0,0,0));
-    rect(0, height - 15, width, 15);      // draws a black rectangle behind the trial label for optimal contrast          
+    rect(0, height - (height * 0.02), width, height * 0.02);      // draws a black rectangle behind the trial label for optimal contrast          
     textFont("Arial", 20);
     fill(color(255,255,255)); 
     textAlign(CENTER);
