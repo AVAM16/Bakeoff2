@@ -53,7 +53,7 @@ function draw()
 {
   if (draw_targets && attempt < 2)
   { 
-    cursor(CROSS);    
+    cursor('pixil-frame-0.png', 40, 40);    
     // The user is interacting with the 6x3 target grid
     background(color(0,0,0));        // sets background to black
     
@@ -75,14 +75,14 @@ function draw()
     textAlign(CENTER);
     text(legendas.getString(trials[current_trial],0), width/2, height - 20);
 
-    for (var i = 0; i < legendas.getRowCount(); i++)
-    {
-      // Check if the user clicked over one of the targets
-      if (targets[i].clicked(mouseX, mouseY) && mouseButton === LEFT) 
-      {
-        cursor(HAND);
-      }
-    }
+    // for (var i = 0; i < legendas.getRowCount(); i++)
+    // {
+    //   // Check if the user clicked over one of the targets
+    //   if (targets[i].clicked(mouseX, mouseY)) 
+    //   {
+    //     cursor(HAND);
+    //   }
+    // }
   }
 }
 

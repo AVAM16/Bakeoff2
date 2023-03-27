@@ -15,7 +15,11 @@ class Target
   // within the target
   clicked(mouse_x, mouse_y)
   {
-    return dist(this.x, this.y, mouse_x, mouse_y) < this.width / 2;
+    let x = this.x - (this.width * 0.7);
+    let y = this.y - (this.width * 0.5);
+    let w = this.width * 1.4;
+    let h = this.width * 1;
+    return ((mouse_x > x) && (mouse_x < x+w) && (mouse_y > y) && (mouse_y < y+h));
   }
   
   draw()
@@ -204,7 +208,7 @@ class Target
       
     }
     else fill(color('#785e01'));//if it's clicked the circle turns yellow
-    square(this.x - (this.width * 0.6), this.y - (this.width * 0.5), this.width * 1.2, 10);
+    rect(this.x - (this.width * 0.7), this.y - (this.width * 0.5), this.width * 1.4, this.width * 1, 10);
     //circle(this.x, this.y, this.width);
     
     // Draw label   
