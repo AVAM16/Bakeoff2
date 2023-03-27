@@ -52,7 +52,8 @@ function setup()
 function draw()
 {
   if (draw_targets && attempt < 2)
-  {     
+  { 
+    cursor(CROSS);    
     // The user is interacting with the 6x3 target grid
     background(color(0,0,0));        // sets background to black
     
@@ -63,9 +64,9 @@ function draw()
     text("Trial " + (current_trial + 1) + " of " + trials.length, 50, 20);
         
     // Draw all targets
-	for (var i = 0; i < legendas.getRowCount(); i++){
-    targets[i].draw();
-  }
+    for (var i = 0; i < legendas.getRowCount(); i++){
+      targets[i].draw();
+    }
     // Draw the target label to be selected in the current trial
     fill(color(0,0,0));
     rect(0, height - (height * 0.02), width, height * 0.02);      // draws a black rectangle behind the trial label for optimal contrast          
@@ -73,6 +74,15 @@ function draw()
     fill(color(255,255,255)); 
     textAlign(CENTER);
     text(legendas.getString(trials[current_trial],0), width/2, height - 20);
+
+    for (var i = 0; i < legendas.getRowCount(); i++)
+    {
+      // Check if the user clicked over one of the targets
+      if (targets[i].clicked(mouseX, mouseY) && mouseButton === LEFT) 
+      {
+        cursor(HAND);
+      }
+    }
   }
 }
 
