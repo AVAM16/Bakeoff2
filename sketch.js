@@ -215,39 +215,26 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
 {
   // Define the margins between targets by dividing the white space 
   // for the number of targets minus one
-  h_margin = horizontal_gap / (GRID_COLUMNS -1);
-  v_margin = vertical_gap / (GRID_ROWS - 1);
-  let x = [];
-  let y = [];
   // Set targets in a 8 x 10 grid
-  for (var r = 0; r < GRID_ROWS; r++)
-  {
-    for (var c = 0; c < GRID_COLUMNS; c++)
-    {
-      let target_x = 40 + (h_margin + target_size) * c + target_size/2;        // give it some margin from the left border
-      let target_y = (v_margin + target_size) * r + target_size/2;
-      
-      // Find the appropriate label and ID for this target
-      let legendas_index = c + GRID_COLUMNS * r;
-      let target_label = legendas.getString(legendas_index, 0);
-      let target_id = legendas.getNum(legendas_index, 1);
-      let megatype = 0;
-      if (target_id >= 0 && target_id <= 27) {
-        megatype = 3;
-      } else if (target_id >= 28 && target_id <= 36){
-        megatype = 0;
-      } else if ((target_id >= 37 && target_id <= 42) || target_id === 44 || target_id === 47 || target_id === 50 || target_id === 51){
-        megatype = 1;
-      } else if ((target_id >= 52 && target_id <= 57) || target_id === 43 || target_id === 45 || target_id === 46 || target_id === 48 || target_id === 49){
-        megatype = 2;
-      } else if (target_id >= 58 && target_id <= 79){
-        megatype = 4;
-      }
-      x.push(target_x);
-      y.push(target_y + 40);
-      let target = new Target(target_size, target_label, target_id, megatype);
-      targets.push(target);
-    }  
+  for (var legendas_index = 0; legendas_index < legendas.getRowCount(); legendas_index++)
+  {     
+    // Find the appropriate label and ID for this target
+    let target_label = legendas.getString(legendas_index, 0);
+    let target_id = legendas.getNum(legendas_index, 1);
+    let megatype = 0;
+    if (target_id >= 0 && target_id <= 27) {
+      megatype = 3;
+    } else if (target_id >= 28 && target_id <= 36){
+      megatype = 0;
+    } else if ((target_id >= 37 && target_id <= 42) || target_id === 44 || target_id === 47 || target_id === 50 || target_id === 51){
+      megatype = 1;
+    } else if ((target_id >= 52 && target_id <= 57) || target_id === 43 || target_id === 45 || target_id === 46 || target_id === 48 || target_id === 49){
+      megatype = 2;
+    } else if (target_id >= 58 && target_id <= 79){
+      megatype = 4;
+    }
+    let target = new Target(target_size, target_label, target_id, megatype);
+    targets.push(target); 
   }
   targets.sort((a, b) => {
     const nameA = a.label.toUpperCase();
@@ -265,9 +252,35 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
   targets.sort((a, b) => {
     return a.megatype - b.megatype;
   });
-  for (var i = 0; i < legendas.getRowCount(); i++){
-    targets[i].x = x[i];
-    targets[i].y = y[i];
+
+  let h_margin = horizontal_gap / (GRID_COLUMNS -1);
+  let v_margin = vertical_gap / (GRID_ROWS - 1);
+  //juices
+  for (var i = 0; i < 9; i++) {
+    let target_x = 40 + (h_margin + target_size) * i + target_size/2;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 0 + target_size/2;
+    targets[i].x = target_x;
+    targets[i].y = target_y + 40;
+  }
+  //milks
+  let a = 0;
+  for (var i = 9; i < 19; i++) {
+    let target_x = 40 + (h_margin + target_size) * a + target_size/2;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 1 + target_size/2;
+
+    targets[i].x = target_x;
+    targets[i].y = target_y + 40;
+    a++;
+  }
+  //yoghurts and creams
+  a = 0;
+  for (var i = 19; i < 30; i++) {
+    let target_x = 40 + (h_margin + target_size) * a + target_size/2;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 2 + target_size/2;
+
+    targets[i].x = target_x;
+    targets[i].y = target_y + 40;
+    a++;
   }
 }
 
