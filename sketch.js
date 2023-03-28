@@ -231,9 +231,21 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
       let legendas_index = c + GRID_COLUMNS * r;
       let target_label = legendas.getString(legendas_index, 0);
       let target_id = legendas.getNum(legendas_index, 1);
+      let megatype = 0;
+      if (target_id >= 0 && target_id <= 27) {
+        megatype = 0;
+      } else if (target_id >= 28 && target_id <= 36){
+        megatype = 1;
+      } else if ((target_id >= 37 && target_id <= 42) || target_id === 44 || target_id === 47 || target_id === 50 || target_id === 51){
+        megatype = 2;
+      } else if ((target_id >= 52 && target_id <= 57) || target_id === 43 || target_id === 48 || target_id === 49){
+        megatype = 3;
+      } else if (target_id >= 58 && target_id <= 79){
+        megatype = 4;
+      }
       x.push(target_x);
       y.push(target_y + 40);
-      let target = new Target(target_size, target_label, target_id);
+      let target = new Target(target_size, target_label, target_id, megatype);
       targets.push(target);
     }  
   }
@@ -249,6 +261,9 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
     }
   
     return 0; // if names are equal
+  });
+  targets.sort((a, b) => {
+    return a.megatype - b.megatype;
   });
   for (var i = 0; i < legendas.getRowCount(); i++){
     targets[i].x = x[i];

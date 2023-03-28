@@ -2,13 +2,14 @@
 class Target
 {
   taken = 0;
-  constructor(w, l, id)
+  constructor(w, l, id, mt)
   {
     this.x      = 0;
     this.y      = 0;
     this.width  = w;
     this.label  = l;
     this.id     = id;
+    this.megatype= mt;
   }
   
   // Checks if a mouse click took place
