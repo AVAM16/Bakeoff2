@@ -233,13 +233,13 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
       let target_id = legendas.getNum(legendas_index, 1);
       let megatype = 0;
       if (target_id >= 0 && target_id <= 27) {
-        megatype = 0;
-      } else if (target_id >= 28 && target_id <= 36){
-        megatype = 1;
-      } else if ((target_id >= 37 && target_id <= 42) || target_id === 44 || target_id === 47 || target_id === 50 || target_id === 51){
-        megatype = 2;
-      } else if ((target_id >= 52 && target_id <= 57) || target_id === 43 || target_id === 48 || target_id === 49){
         megatype = 3;
+      } else if (target_id >= 28 && target_id <= 36){
+        megatype = 0;
+      } else if ((target_id >= 37 && target_id <= 42) || target_id === 44 || target_id === 47 || target_id === 50 || target_id === 51){
+        megatype = 1;
+      } else if ((target_id >= 52 && target_id <= 57) || target_id === 43 || target_id === 45 || target_id === 46 || target_id === 48 || target_id === 49){
+        megatype = 2;
       } else if (target_id >= 58 && target_id <= 79){
         megatype = 4;
       }
