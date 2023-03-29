@@ -4,12 +4,12 @@ class Target
   taken = 0;
   constructor(w, l, id, mt)
   {
-    this.x      = 0;
-    this.y      = 0;
-    this.width  = w;
-    this.label  = l;
-    this.id     = id;
-    this.megatype= mt;
+    this.x        = 0;
+    this.y        = 0;
+    this.width    = w;
+    this.label    = l;
+    this.id       = id;
+    this.megatype = mt;
   }
   
   // Checks if a mouse click took place
@@ -25,6 +25,7 @@ class Target
   
   draw()
   {
+  
     // let megatype = "Nada";
     // // Draw target
     // if (this.type == "Apple") {
@@ -200,23 +201,24 @@ class Target
     //   fill(color('#00FF7F'));
     // }
 
-    let firstletter = this.label.slice(0,3);
+    
     
     //rect(this.x - (this.width*0.75), this.y - (this.width*0.50),  this.width*1.5,  this.width*30); //creates the rectangle
-
+    
+    let firstletter = this.label.slice(0,3);
     if (this.taken == 0) {
       fill(color('#595858'));//if the circle isn't yet clicked, the circle stays grey
       
     }
     else fill(color('#785e01'));//if it's clicked the circle turns yellow
-    rect(this.x - (this.width * 0.7), this.y - (this.width * 0.5), this.width * 1.4, this.width * 1, 10);
+    rect(this.x - (this.width * 0.7), this.y - (this.width * 0.5), this.width * 1.3, this.width * 0.8, 10);
     //circle(this.x, this.y, this.width);
     
     // Draw label   
-    textFont("Arial", 16);//each food of the label
+    textFont("Arial", 15);//each food of the label
     fill('#ffffff');
     textAlign(CENTER);
-    text(this.label, this.x, this.y + (this.width*0.2));
+    text(this.label, this.x-this.width*0.04, this.y + (this.width*0.05));
     
     // textFont("Arial", 14);//the general category that each food belongs to
     // fill(color(255,255,255));
@@ -227,7 +229,7 @@ class Target
     fill('#6bfc03');
     textAlign(CENTER, TOP);
     textStyle(BOLD);
-    text(firstletter, this.x, this.y - (this.width/2.4));
+    text(firstletter, this.x-this.width*0.02, this.y - (this.width/2.4));
     
     textFont("Arial", 12);//the randomized food that appears at the bottom center of the screen
     textAlign(CENTER,TOP);

@@ -48,11 +48,23 @@ function setup()
   drawUserIDScreen();        // draws the user start-up screen (student ID and display size)
 }
 
+let array_group = [];
+
 // Runs every frame and redraws the screen
 function draw()
 {
+  if (!draw_targets && attempt == 0) {
+    textFont("Arial", 14);
+    textAlign(CENTER);
+    fill('#ffffff');
+    text("Demora o teu tempo a analisar o layout. O tempo só começa a contar após o primeiro clique.", displayWidth/4.1, displayHeight/3);
+    text("Existem 5 categorias de comida, Juices, Milks, Yoghurts and Creams, Fruits e Vegetables.", displayWidth/4.1, displayHeight/3 + displayWidth*0.02);
+    text("Respetivamente, estão associadas as cores laranja, branco, castanho creme, vermelho e verde.", displayWidth/4.1, displayHeight/3 + displayWidth*0.04);
+    text("Dentro de cada categoria as comidas estão organizadas por ordem alfabética.", displayWidth/4.1, displayHeight/3 + displayWidth*0.06);
+  }
   if (draw_targets && attempt < 2)
   { 
+    
     cursor('pixil-frame-0.png', 40, 40);    
     // The user is interacting with the 6x3 target grid
     background(color(0,0,0));        // sets background to black
@@ -62,7 +74,8 @@ function draw()
     fill(color(255,255,255));
     textAlign(LEFT);
     text("Trial " + (current_trial + 1) + " of " + trials.length, 50, 20);
-        
+    
+    array_group[0].draw();
     // Draw all targets
     for (var i = 0; i < legendas.getRowCount(); i++){
       targets[i].draw();
@@ -222,15 +235,15 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
     let target_label = legendas.getString(legendas_index, 0);
     let target_id = legendas.getNum(legendas_index, 1);
     let megatype = 0;
-    if (target_id >= 0 && target_id <= 27) {
+    if (target_id >= 0 && target_id <= 27) { //fruit 3
       megatype = 3;
-    } else if (target_id >= 28 && target_id <= 36){
+    } else if (target_id >= 28 && target_id <= 36){ //juice 0 
       megatype = 0;
-    } else if ((target_id >= 37 && target_id <= 42) || target_id === 44 || target_id === 47 || target_id === 50 || target_id === 51){
+    } else if ((target_id >= 37 && target_id <= 42) || target_id === 44 || target_id === 47 || target_id === 50 || target_id === 51){ //milk 1
       megatype = 1;
-    } else if ((target_id >= 52 && target_id <= 57) || target_id === 43 || target_id === 45 || target_id === 46 || target_id === 48 || target_id === 49){
+    } else if ((target_id >= 52 && target_id <= 57) || target_id === 43 || target_id === 45 || target_id === 46 || target_id === 48 || target_id === 49){ // milk derivatives 2
       megatype = 2;
-    } else if (target_id >= 58 && target_id <= 79){
+    } else if (target_id >= 58 && target_id <= 79){ // vegetables 4
       megatype = 4;
     }
     let target = new Target(target_size, target_label, target_id, megatype);
@@ -253,36 +266,93 @@ function createTargets(target_size, horizontal_gap, vertical_gap)
     return a.megatype - b.megatype;
   });
 
-  let h_margin = horizontal_gap / (GRID_COLUMNS -1);
+  let h_margin = horizontal_gap / (GRID_COLUMNS + 2);
   let v_margin = vertical_gap / (GRID_ROWS - 1);
+  
   //juices
   for (var i = 0; i < 9; i++) {
-    let target_x = 40 + (h_margin + target_size) * i + target_size/2;        // give it some margin from the left border
-    let target_y = (v_margin + target_size) * 0 + target_size/2;
+    let target_x = 40 + (h_margin + target_size) * i + target_size/0.5;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 0 + target_size/2.5;
     targets[i].x = target_x;
     targets[i].y = target_y + 40;
   }
+  
   //milks
   let a = 0;
   for (var i = 9; i < 19; i++) {
-    let target_x = 40 + (h_margin + target_size) * a + target_size/2;        // give it some margin from the left border
-    let target_y = (v_margin + target_size) * 1 + target_size/2;
+    let target_x = 40 + (h_margin + target_size) * a + target_size/0.75;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 1 + target_size/1.65;
 
     targets[i].x = target_x;
     targets[i].y = target_y + 40;
     a++;
   }
+  
   //yoghurts and creams
   a = 0;
   for (var i = 19; i < 30; i++) {
     let target_x = 40 + (h_margin + target_size) * a + target_size/2;        // give it some margin from the left border
-    let target_y = (v_margin + target_size) * 2 + target_size/2;
+    let target_y = (v_margin + target_size) * 2 + target_size/1.5;
+
+    targets[i].x = target_x;
+    targets[i].y = target_y + 40;
+    a++;
+  }
+
+  //fruits
+  a = 0;
+  for (var i = 30; i < 41; i++) {
+    let target_x = 40 + (h_margin + target_size) * a + target_size/2;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 3 + target_size/1.2;
+
+    targets[i].x = target_x;
+    targets[i].y = target_y + 40;
+    a++;
+  }
+  a = 0;
+  for (var i = 41; i < 52; i++) {
+    let target_x = 40 + (h_margin + target_size) * a + target_size/2;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 4 + target_size/1.5;
+
+    targets[i].x = target_x;
+    targets[i].y = target_y + 40;
+    a++;
+  }
+  a = 0;
+  for (var i = 52; i < 58; i++) {
+    let target_x = 40 + (h_margin + target_size) * a + target_size*4;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 5 + target_size/2;
+
+    targets[i].x = target_x;
+    targets[i].y = target_y + 40;
+    a++;
+  }
+  //vegetables
+  a = 0;
+  for (var i = 58; i < 69; i++) {
+    let target_x = 40 + (h_margin + target_size) * a + target_size/2;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 6 + target_size/2;
+
+    targets[i].x = target_x;
+    targets[i].y = target_y + 40;
+    a++;
+  }
+ a = 0;
+  for (var i = 69; i < 80; i++) {
+    let target_x = 40 + (h_margin + target_size) * a + target_size/2;        // give it some margin from the left border
+    let target_y = (v_margin + target_size) * 7 + target_size/3;
 
     targets[i].x = target_x;
     targets[i].y = target_y + 40;
     a++;
   }
 }
+
+function createRectangles(){
+  let group_creator = new Group_Creator();
+  array_group.push(group_creator);
+}
+
 
 // Is invoked when the canvas is resized (e.g., when we go fullscreen)
 function windowResized() 
@@ -302,7 +372,8 @@ function windowResized()
     let target_size    = 2;                                // sets the target size (will be converted to cm when passed to createTargets)
     let horizontal_gap = screen_width - target_size * GRID_COLUMNS;// empty space in cm across the x-axis (based on 10 targets per row)
     let vertical_gap   = screen_height - target_size * GRID_ROWS;  // empty space in cm across the y-axis (based on 8 targets per column)
-
+    
+    createRectangles();
     // Creates and positions the UI targets according to the white space defined above (in cm!)
     // 80 represent some margins around the display (e.g., for text)
     createTargets(target_size * PPCM, horizontal_gap * PPCM - 80, vertical_gap * PPCM - 80);
